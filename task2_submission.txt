@@ -1,0 +1,94 @@
+PYTHON
+# ARITHMETIC OPERATORS
+a=25
+b=10
+print(a+b)
+print(a-b)
+print(a*b)
+print(a/b)
+print(a//b)
+print(a%b)
+print(a**b)
+
+
+# ASSIGNMENT OPERATORS
+X=10
+X+=5
+print(X)
+X-=5
+print(X)
+X*=5
+print(X)
+X/=5
+print(X)
+X%=5
+print(X)
+X//=5
+print(X)
+X**=5
+print(X)
+
+# COMPARISON  AND LOGICAL OPERATORS
+
+AGE=20
+MARKS=75
+
+if AGE>=18 and MARKS>=50:
+    print("Eligible ")
+else:
+    print("Not Eligible")
+
+if AGE<18 or MARKS<50:
+    print("Eligible ")
+else:
+    print("Not Eligible")
+
+print(not(AGE>=18 and MARKS>=50))
+
+#BITWISE OPERATORS
+
+#num = int(input("Enter a number: "))
+
+#print("Bitwise AND with 5:", num & 5)
+#print("Bitwise OR with 3:", num | 3)
+#print("Bitwise XOR with 2:", num ^ 2)
+#print("left shift by 2:", num << 2)
+#print("right shift by 1:", num >> 1)
+#print("Bitwise NOT:", ~num)
+
+
+print(10 & 5)
+print(10 | 3)
+print(10 ^ 2)
+print(10 << 2)
+print(10 >> 1)
+print(~10)
+
+
+SQL 
+
+USE company_db;
+
+INSERT INTO employees VALUES
+(8, "Viswa", 24, "Testing", 40000 ),
+(9, "Arjun", 22, "Sales", 25000),
+(10, "Sruthi", 28, "HR", 35000),
+(11, "Amar", 30, "IT", 50000),
+(12, "kamal", 26, "HR", 40000),
+(13, "Lakshmi", 25, "Marketing", 38000);
+ 
+
+ SELECT * FROM employees WHERE salary > 30000;
+ SELECT * FROM employees WHERE age BETWEEN 22 AND 30;
+ SELECT * FROM employees WHERE department IN ( 'HR','IT');
+ SELECT * FROM employees WHERE department NOT IN ('Sales');
+ 
+ SELECT * FROM employees WHERE name LIKE 'A%';
+ SELECT * FROM employees WHERE name LIKE '%n';
+ SELECT * FROM employees WHERE name LIKE '-----';
+   
+    SELECT * FROM employees ORDER BY salary ASC;
+    SELECT * FROM employees ORDER BY age DESC; 
+    SELECT * FROM employees  LIMIT 3;
+    SELECT * FROM employees LIMIT 3 OFFSET 2;
+   
