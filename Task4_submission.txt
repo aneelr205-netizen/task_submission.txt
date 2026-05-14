@@ -1,0 +1,123 @@
+# TASK1 
+# WHILE LOOP
+
+n = int(input("Enter a number: "))
+i = 1
+total = 0
+while i <= n:
+    print(i)
+    total += i
+    i += 1
+print("sum:", total)
+
+
+# TASK2
+# FOR LOOP with RANGE
+
+print(" Numbers from 1 to 10:")
+for i in range(1, 11):
+    print(i)
+
+    print("\nEven numbers from 2 to 20:")
+for i in range(2, 21, 2):
+    print(i)
+
+    print("\nNumbers from 20 to 1:")
+for i in range(20, 0, -1):
+        print(i)
+
+
+# TASK3
+# BREAK ANDCONTINUE 
+
+# USING BREAK
+print("Using break:")
+for i in range(1, 16):
+    if i == 8:
+        break
+    print(i)
+
+# USING CONTINUE
+print("Using continue:")
+for i in range(1, 16):
+    if i % 3 == 0:
+        continue
+    print(i)
+    
+
+# TASK4
+# NESTED LOOP PATTERN
+
+for i in range(1, 6):
+    for j in range(1, i + 1):
+        print(j, end=" ")
+    print()
+
+
+CREATE DATABASE college_db;
+
+USE college_db;
+
+CREATE TABLE students (
+student_id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(50) NOT NULL,
+email VARCHAR(100) UNIQUE,
+age INT CHECK (age >= 18),
+department ENUM( "CSE", "ECE", "IT", "MECH"),
+city VARCHAR(50) DEFAULT "Chennai"
+);
+
+CREATE TABLE courses (
+course_id INT PRIMARY KEY,
+course_name VARCHAR(50)
+);
+
+CREATE TABLE enrollments (
+enrollment_id INT PRIMARY KEY,
+student_id INT,
+course_id INT,
+
+FOREIGN KEY (student_id)
+REFERENCES students(student_id),
+
+FOREIGN KEY (course_id)
+REFERENCES courses(course_id)
+);
+
+INSERT INTO students(name, email, age, department, city) VALUES
+("Nivas", "nivas@gmail.com", 22, "CSE", "Kadapa"),
+("Nisha", "Nisha@gmail.com", 20, "ECE", "Chennai"),
+("Rahul", "Rahul@gmail.com", 21, "IT", "Hyderabad");
+
+INSERT INTO courses(course_id, course_name) VALUES 
+(101, "Python"),
+(102, "Java"),
+(103, "MySQL");
+
+INSERT INTO emrollments(enrollment_id, student_id, course_id) VALUES
+(1, 1,101),
+(2, 2, 102),
+(3, 3, 103);
+
+INSERT INTO students(name, email, age, department) VALUES 
+("kumar", "nivas@gmail.com", 22, "CSE");
+
+(ERROR: Duplicate entry)
+
+
+INSERT INTO students(name, email, age, department) VALUES
+(NULL, "test@gmail.com", 20, "IT");
+
+(ERROR: Column name cannot be null)
+
+
+INSERT INTO students(name, email, age, department) VALUES
+("Ravi", "ravi@gmail.com", 20, "EEE");
+
+(ERROR: Data truncated for column department at row)
+
+
+INSERT INTO students(name, email, age, department) VALUES
+("MIni", "mini@gmail.com", 16, "CSE");
+
+(ERROR: Check constraint is violated)
