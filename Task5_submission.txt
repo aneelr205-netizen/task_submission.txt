@@ -1,0 +1,75 @@
+# MYSQL::
+
+CREATE DATABASE college_db;
+
+USE college_db;
+
+CREATE TABLE departments (
+department_id INT PRIMARY KEY,
+department_name VARCHAR(50)
+);
+
+CREATE TABLE students (
+student_id INT PRIMARY KEY,
+student_name VARCHAR(50),
+department_id INT,
+FOREIGN KEY (department_id)
+REFERENCES departments(department_id)
+);
+
+INSERT INTO departments VALUES 
+(101, "Computer Science"),
+(102, "Mechanical"),
+(103, "Electronics"),
+(104, "Civil"),
+(105, "Mathematics");
+
+INSERT INTO students VALUES
+(1, "nithin", 101),
+(2, "Priya", 102),
+(3, "Kyra", 103),
+(4, "Kanth", 101),
+(5, "Supriya", NULL);
+
+
+SELECT s.student_name, d.department_name FROM students s INNER JOIN departments d ON s.department_id = d.department_id;
+SELECT s.student_name, d.department_name FROM students s LEFT OUTER JOIN departments d ON s.department_id = d.department_id;
+SELECT s.student_name, d.department_name FROM students s RIGHT OUTER JOIN departments d ON s.department_id = d.department_id;
+SELECT s.student_name, d.department_name FROM students s LEFT JOIN departments d ON s.department_id = d.department_id
+UNION
+SELECT s.student_name, d.department_name FROM students s RIGHT JOIN departments d ON s.department_id = d.department_id;
+SELECT s.student_name, d.department_name FROM students s CROSS JOIN departments d;
+
+# PYTHON 
+
+numbers = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+print("Original list: ", numbers)
+
+numbers.append(110)
+print("\nAfter append: ", numbers)
+
+numbers.insert(2, 25)
+print("\nAfter insert at 3rd position: ", numbers)
+
+numbers.remove(40)
+print("\nAfter removing 40: ", numbers)
+
+numbers.pop()
+print("\nAfter popping last element: ", numbers)
+
+index_value = numbers.index(50)
+print("\nIndex of 50: ", index_value)
+
+count_value = numbers.count(20)
+print("\nCount of 20: ", count_value)
+
+numbers.sort()
+print("\nAfter sorting: ", numbers)
+
+numbers.reverse()
+print("\nAfter reversing: ", numbers)
+
+
+new_numbers = [200, 220, 240, 260, 280]
+numbers.extend(new_numbers)
+print("\nAfter extending with new numbers: ", numbers)
