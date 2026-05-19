@@ -1,0 +1,95 @@
+PYTHON :
+
+#Task1 
+# LIST OPERATIONS 
+
+Marks = [78, 85, 92, 67, 88, 90, 76, 85, 95, 80]
+Marks.append(89)
+Marks.append(73)
+Marks.insert(1, 81)
+Marks.remove(67)
+Marks.pop()
+
+print("Updated Marks List: ", Marks)
+print("Highest Mark: ", max(Marks))
+print("Lowest Mark: ", min(Marks))
+print("Number of times 85 appears: ", Marks.count(85))
+print("Position of 92: ", Marks.index(92))
+
+Marks.sort()
+print("Ascending Order: ", Marks)
+
+Marks.reverse()
+print("Descending Order: ", Marks)
+
+
+#Task2 
+# Tuple Operations
+
+employee = ("Ram", 33, "Software Engineer")
+name, age, profession = employee
+print("Employee Name: ", name)
+print("Employee Age: ", age)
+print("Employee Profession: ", profession)
+
+#Task3
+# Set Operations
+
+online_courses = {"Python", "Data Science", "Machine Learning", "Web Development"}
+completed_courses = {"Python", "Data Science"}
+print("Union: ", online_courses.union(completed_courses))
+print("Intersection: ", online_courses.intersection(completed_courses))
+print("Difference: ", online_courses.difference(completed_courses))
+
+
+#Task4
+# Dictionary Operations
+
+students = {
+    "student Name": "Teja",
+    "Department": "Computer Science",
+    "CGPA": 9.0,
+    "City": "bangalore"
+}
+
+print("Keys: ", students.keys())
+print("Values: ", students.values())
+print("Items: ", students.items())
+
+
+MY SQL :
+
+CREATE DATABASE employees_db;
+
+USE employees_db;
+
+CREATE TABLE sales (
+product_id INT PRIMARY KEY,
+product_name VARCHAR(50),
+category VARCHAR(50),
+quantity INT,
+price DECIMAL(10,2)
+);
+
+INSERT INTO sales VALUES
+(1, "Laptop", "Electronics", 5, 60000),
+(2, "Mouse", "Electronics", 15, 500),
+(3, "Keyboard", "Electronics", 10, 1200),
+(4, "Shampoo", "Cosmetics", 20, 250),
+(5, "Soap", "Cosmetics", 30, 60),
+(6, "Ricebag", "Groceries", 18, 1500),
+(7, "Oil", "Groceries", 12, 180),
+(8, "Book", "Stationary", 25, 40),
+(9, "Pen", "Stationary", 50, 10),
+(10, "Water Bottle", "Accessories", 8, 300);
+
+SELECT SUM(quantity) AS total_quantity_sold FROM sales;
+SELECT AVG(price) AS average_price FROM sales;
+SELECT MAX(price) AS highest_price FROM sales;
+SELECT MIN(price) AS lowest_price FROM sales;
+SELECT COUNT(*) AS total_products FROM sales;
+SELECT category, SUM(quantity) AS total_quantity FROM sales GROUP BY category;
+SELECT category, SUM(quantity) AS total_quantity FROM sales GROUP BY category HAVING SUM(quantity) > 10;
+
+
+
