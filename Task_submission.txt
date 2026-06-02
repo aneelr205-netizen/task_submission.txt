@@ -1,0 +1,166 @@
+-- Create Database
+CREATE DATABASE notes_app;
+
+-- Use Database
+USE notes_app;
+
+-- Create Table
+CREATE TABLE notes (
+    note_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP
+);
+
+pip install mysql-connector-python
+
+import mysql.connector
+
+# Database Connection
+conn = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="your_password",
+    database="notes_app"
+)
+
+cursor = conn.cursor()
+
+
+# Function to Add Note
+
+def add_note():
+    try:
+        title = input("Enter Note Title: ")
+        content = input("Enter Note Content: ")
+
+        query = "INSERT INTO notes (title, content) VALUES (%s, %s)"
+        values = (title, content)
+
+        cursor.execute(query, values)
+        conn.commit()
+
+        print("Note added successfully!")
+
+    except Exception as e:
+        print("Error:", e)
+
+# Function to View Notes
+
+def view_notes():
+    try:
+        query = "SELECT * FROM notes"
+        cursor.execute(query)
+
+        records = cursor.fetchall()
+
+        if records:
+            print("\n Stored Notes")
+            print("-" * 60)
+
+            for row in records:
+                print(f"ID: {row[0]}")
+                print(f"Title: {row[1]}")
+                print(f"Content: {row[2]}")
+                print(f"Created At: {row[3]}")
+                print(f"Updated At: {row[4]}")
+                print("-" * 60)
+        else:
+            print("No notes found.")
+
+    except Exception as e:
+        print("Error:", e)
+
+# Function to Update Note
+
+def update_note():
+    try:
+        note_id = int(input("Enter Note ID to Update: "))
+
+        new_title = input("Enter New Title: ")
+        new_content = input("Enter New Content: ")
+
+        query = """
+        UPDATE notes
+        SET title = %s, content = %s
+        WHERE note_id = %s
+        """
+
+        values = (new_title, new_content, note_id)
+
+        cursor.execute(query, values)
+        conn.commit()
+
+        if cursor.rowcount > 0:
+            print("Note updated successfully!")
+        else:
+            print("Note ID not found.")
+
+    except ValueError:
+        print("Please enter a valid numeric ID.")
+
+    except Exception as e:
+        print("Error:", e)
+
+
+# Function to Delete Note
+
+def delete_note():
+    try:
+        note_id = int(input("Enter Note ID to Delete: "))
+
+        query = "DELETE FROM notes WHERE note_id = %s"
+
+        cursor.execute(query, (note_id,))
+        conn.commit()
+
+        if cursor.rowcount > 0:
+            print(" Note deleted successfully!")
+        else:
+            print(" Note ID not found.")
+
+    except ValueError:
+        print("Please enter a valid numeric ID.")
+
+    except Exception as e:
+        print("Error:", e)
+
+
+
+# Main Menu
+
+while True:
+
+    print("\n====== NOTES SAVER APPLICATION ======")
+    print("1. Add New Note")
+    print("2. View All Notes")
+    print("3. Update Note")
+    print("4. Delete Note")
+    print("5. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        add_note()
+
+    elif choice == "2":
+        view_notes()
+
+    elif choice == "3":
+        update_note()
+
+    elif choice == "4":
+        delete_note()
+
+    elif choice == "5":
+        print("Thank you for using Notes Saver App!")
+        break
+
+    else:
+        print("Invalid choice! Please try again.")
+
+# Close Connection
+cursor.close()
+conn.close()
